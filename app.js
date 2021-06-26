@@ -29,5 +29,5 @@ app.use(appRoute)
 
 //START LISTENING ON PORT
 app.listen(PORT, ()=> {
-	`Application now running on port ${PORT}`
+	console.log(`Application now running on port ${PORT}`)
 })
