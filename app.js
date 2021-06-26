@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: true}))
 
 
 //route paths
-const appRoute = require('./routes/base-route')
+const appRoute = require('./routes/app-route')
 
 //add routes
 app.use(appRoute)
