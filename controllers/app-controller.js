@@ -12,12 +12,12 @@ const getBase = (req, res, next) => {
 }
 
 const getProducts = (req, res) => {
-
+    
 	Product.find().then(product => {
-		res.status('200').json({message: 'Handling get route for products',product: product})
+		res.status('200').json({message: 'Handling get route for products', product: product})
 	}).catch(err => { 
 		console.log(err)
-		res.status('400').json({product: 'no products found',message: 'Handling get route for products'})
+		res.status('400').json({message: 'Handling get route for products', product: 'no products found'})
 	})
 	
 }
@@ -32,26 +32,40 @@ const postProduct = (req, res) => {
 		res.status('400').json({status: false, message: 'nothing addeed'})
 		
 	}else {
-		console.log(name, price)
-		//const product = {name: name, price: price}
-
 		const product = new Product({
 			_id: new mongoose.Types.ObjectId(),
 			name: name,
 			price: price
 		})
-
-		product.save().then(result => console.log(result)).catch( err => console.log(err))
-
-		res.setHeader('Content-Type', 'application/json')
-		res.status('201').json({success: true, message: 'new product added', product: product})
-
+        
+		product.save() 
+			.then(result => {
+				console.log(result)
+				res.setHeader('Content-Type', 'application/json')
+				res.status('201').json({success: true, message: 'new product added', product: product})
+			})
+			.catch( err => {
+				console.log(err)
+				res.setHeader('Content-Type', 'application/json')
+				res.status('500').json({success: true, message: 'new product added', product: product})
+			})
 	}
 
 	
 }
 
 
+const findOneProduct = (req, res) => {
+	const id = req.params.id
+	Product.findById(id).then(product => {
+		res.status('200').json({success: true, product: product})
+	}).catch(err => {
+		console.log(err)
+		res.status('404').json({success: false, message: 'not found'})
+	})
+}
 
 
-module.exports = { home: getBase, get: getProducts, post: postProduct }
+
+
+module.exports = { home: getBase, get: getProducts, post: postProduct, findOne: findOneProduct }
