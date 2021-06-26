@@ -1,0 +1,34 @@
+{
+  "name": "restapi-node-mongo",
+  "version": "1.0.0",
+  "description": "build a rest api with nodeJS and mongoDB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olalekan-adeyemi/restapi-mongo.git"
+  },
+  "keywords": [
+    "restapi",
+    "mongodb",
+    "nodejs",
+    "mongoose"
+  ],
+  "author": "Lawrence Adeyemi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olalekan-adeyemi/restapi-mongo/issues"
+  },
+  "homepage": "https://github.com/olalekan-adeyemi/restapi-mongo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.15"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7"
+  }
+}
