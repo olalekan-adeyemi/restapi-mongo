@@ -9,7 +9,16 @@ const getBase = (req, res, next) => {
 	})
 }
 
+const getProducts = (req, res) => {
+	res.status('200').json({message: 'Handling get route for products'})
+}
+
+const postProduct = (req, res) => {
+	const { name, price } = req.body
+	res.status('201').json({success: true, message: 'new product added'})
+}
 
 
 
-module.exports = { home: getBase }
+
+module.exports = { home: getBase, get: getProducts, post: postProduct }

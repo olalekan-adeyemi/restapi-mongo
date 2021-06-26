@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const path = require('path')
+const mongoose = require('mongoose')
 require('dotenv').config()
 
 
@@ -8,7 +9,21 @@ require('dotenv').config()
 const app = express()
 const PORT = process.env.PORT || 4000
 
+//Connect mongo database
+const uri = 'mongodb+srv://mg_atlas:' + process.env.DATABASE_PASSWORD + '@app-cluster.bgdyk.mongodb.net/restapi-mgdb?retryWrites=true&w=majority'
 
+mongoose.connect(uri, 
+	{
+		useNewUrlParser: true, 
+		useUnifiedTopology: true,
+	}, (err, result)=> { 
+		if(err) {
+			console.log('error connecting to database: ' + err)
+		}else {
+			console.log('connected to mongoDB: ' + result)
+		}
+		
+	})
 
 
 //declare middlewares
