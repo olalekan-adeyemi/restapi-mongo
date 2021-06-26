@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+const Product = require('../model/product')
 
 // eslint-disable-next-line no-unused-vars
 const getBase = (req, res, next) => {
@@ -15,6 +17,15 @@ const getProducts = (req, res) => {
 
 const postProduct = (req, res) => {
 	const { name, price } = req.body
+	//const product = {name: name, price: price}
+
+	const product = new Product({
+		_id: new mongoose.Types.ObjectId(),
+		name: name,
+		price: price
+	})
+
+	product.save().then(result => console.log(result)).catch( err => console.log(err))
 	res.status('201').json({success: true, message: 'new product added'})
 }
 
